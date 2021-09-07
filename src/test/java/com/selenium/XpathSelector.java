@@ -1,9 +1,11 @@
 package com.selenium;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class XpathSelector {
@@ -76,10 +78,75 @@ public class XpathSelector {
 		Thread.sleep(4000);
 		driver.close();
 	}
+	
+	public static void XpathAxes() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","/Users/kalpe/eclipse-workspace/SeleniumConcepts/Driver/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://money.rediff.com/gainers");
+		System.out.println(driver.getTitle());
+		 //self 
+	     String text1 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/self::a")).getText();
+	     String text2 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/self::*")).getText();
+	     System.out.println(text1);
+	     System.out.println(text2);
+	     
+	     //parent      
+	     String text3 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/parent::td")).getText();
+	     String text4 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/parent::*")).getText();
+	     System.out.println(text3);
+	     System.out.println(text4);
+	     //td[contains(text(),'28.60')]/parent::*
+	     
+	     //child 
+	     String text5 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/parent::td/child::*")).getText();
+	     String text6 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/parent::td/child::a")).getText();
+	     System.out.println(text5);
+	     System.out.println(text6);
+	     
+	     
+	    //Ancestor
+	     String text7 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/ancestor::tr")).getText();
+	     String text8 = driver.findElement(By.xpath("//a[contains(text(),'Navoday Enterprises')]/ancestor::td")).getText();
+	     System.out.println(text7);
+	     System.out.println(text8);    
+	     //a[contains(text(),'Navoday Enterprises')]/ancestor::html
+	     //a[contains(text(),'Navoday Enterprises')]/ancestor::div[1]
+	     //td[contains(text(),'28.60')]/ancestor::*
+	     //td[contains(text(),'28.60')]/ancestor::tr
+	     //td[contains(text(),'28.60')]/ancestor::div
+	     
+	     //Descendant
+	     List<WebElement> element1 = driver.findElements(By.xpath("//a[contains(text(),'Navoday Enterprises')]/ancestor::tr/descendant::td"));
+	     System.out.println(element1.size());
+	     //td[contains(text(),'28.60')]/ancestor::tr/descendant::td
+	     //td[contains(text(),'28.60')]/parent::tr/descendant::td
+	     
+	     
+	     //Following
+	     List<WebElement> element2 = driver.findElements(By.xpath("//a[contains(text(),'Navoday Enterprises')]/following::*"));
+	     System.out.println(element2.size());
+	     //a[contains(text(),'Navoday Enterprises')]/following::tr[3]
+
+	     //Following-sibling
+	     List<WebElement> element3 = driver.findElements(By.xpath("//a[contains(text(),'Navoday Enterprises')]/ancestor::tr/following-sibling::*"));
+	     System.out.println(element3.size());
+
+	     //Preceding
+	     List<WebElement> element4 = driver.findElements(By.xpath("//a[contains(text(),'Navoday Enterprises')]/ancestor::tr/preceding::*"));
+	     System.out.println(element4.size());
+
+	     //Preceding-sibling
+	     List<WebElement> element5 = driver.findElements(By.xpath("//a[contains(text(),'Navoday Enterprises')]/ancestor::tr/preceding-sibling::*"));
+	     System.out.println(element5.size());
+	     
+	     Thread.sleep(3000);
+	     driver.close();
+	}
 
 	public static void main(String[] args) throws InterruptedException {
 		Scanner sc = new Scanner(System.in);
-		System.out.println(" 1.Facebook\n 2.HindustanCopper\n 3.Spotify\n");
+		System.out.println(" 1.Facebook\n 2.HindustanCopper\n 3.Spotify\n 4.XpathAxes\n");
 		int choice = sc.nextInt();	
 		switch (choice) {
 		case 1:	FacebookElements();
@@ -88,6 +155,8 @@ public class XpathSelector {
 			break;
 		case 3: SpotifyElements();
 			break;
+		case 4: XpathAxes();
+		break;	
 		}
 	}
 }
