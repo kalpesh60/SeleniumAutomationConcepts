@@ -70,8 +70,8 @@ public class WebElementInterfaceMethods {
 		//getAttribute
 		System.out.println("firstname get attribute name: " +firstname.getAttribute("name"));
 		System.out.println("firstname get attribute name: " +firstname.getAttribute(""));
-		System.out.println("lastname get attribute name: " +lastname.getAttribute("name"));
-		System.out.println("birthDay get attribute name: " +birthDay.getAttribute("name"));
+		System.out.println("lastname get attribute name: " +lastname.getAttribute("id"));
+		System.out.println("birthDay get attribute name: " +birthDay.getAttribute("type"));
 		
 		//getText()
 		System.out.println("firstname getText: " +firstname.getText());
@@ -85,8 +85,8 @@ public class WebElementInterfaceMethods {
 		
 		//getCssValue()
 		System.out.println("firstname getCssValue: " +firstname.getCssValue("color"));
-		System.out.println("lastname getCssValue: " +lastname.getCssValue("color"));
-		System.out.println("birthDay getCssValue: " +birthDay.getCssValue("color"));
+		System.out.println("lastname getCssValue: " +lastname.getCssValue("margin"));
+		System.out.println("birthDay getCssValue: " +birthDay.getCssValue("padding"));
 		
 		//getRect()
 		System.out.println("firstname getRect: " +firstname.getRect());
@@ -108,10 +108,10 @@ public class WebElementInterfaceMethods {
 		
 		//clear()
 		firstname.clear();
+		Thread.sleep(2000);
 		
 		//Submit()
-		WebElement submit = driver.findElement(By.xpath("//button[@name='websubmit']"));
-		submit.submit();
+		driver.findElement(By.id("pass")).submit();
 
 		Thread.sleep(3000);
 		driver.close();
